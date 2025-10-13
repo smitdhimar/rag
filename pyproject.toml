@@ -5,10 +5,13 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
-    "ipykernal",
+    "chromadb>=1.1.1",
+    "faiss-cpu",
+    "ipykernel",
     "langchain>=0.3.27",
     "langchain-community>=0.3.31",
     "langchain-core>=0.3.79",
     "pymupdf>=1.26.5",
     "pypdf>=6.1.1",
+    "sentence-transformers",
 ]
