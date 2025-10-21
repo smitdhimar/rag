@@ -1,21 +1,34 @@
+#imports
+from utils import OllamaLLM
 from loader import get_chunks
 from embedder import EmeddingManager
 from retriever import RAGretriever
 from vector_store import VectorStore
 
+#declare paths
 data_path = "../data/pdf"
 presistent_directory = "../vector_store"
 
+# get chunks 
 chunks = get_chunks(data_path, 1000, 200)
 
+# initialize embedding manager
 embedding_manager = EmeddingManager()
-print(chunks[0])
 generated_embeddings = embedding_manager.generate_embeddings([i.page_content for i in chunks])
-print(generated_embeddings)
 
+# initialize vector stores
 vector_store= VectorStore()
-vector_store.add_documents(chunks, generated_embeddings)
+is_add_document_enabled = False
+if is_add_document_enabled is True:
+    vector_store.add_documents(chunks, generated_embeddings)
 
+# retriever class
 retirever = RAGretriever(vector_store, embedding_manager)
-response = retirever.retrievel("what is professional reference letter")
-print(response)
+# retreive context
+# response = retirever.retrievel("what is professional reference letter")
+
+# ollama llm connection
+question = "what is professional reference letter"
+llm = OllamaLLM()
+response = llm.send_message(retirever, question )
+print(response['response'])
