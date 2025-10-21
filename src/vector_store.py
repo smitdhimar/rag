@@ -53,14 +53,14 @@ class VectorStore:
 
             embeddings_list.append(embedding.tolist())
 
-            try:
-                self.collection.add(
-                    ids = ids,
-                    embeddings= embeddings_list,
-                    metadatas= metadatas,
-                    documents= document_texts
-                )
-                print(f"documents added");
+        try:
+            self.collection.add(
+                ids = ids,
+                embeddings= embeddings_list,
+                metadatas= metadatas,
+                documents= document_texts
+            )
+            print(f"documents added");
 
-            except Exception as e:
-                print(f"Error adding documents: {e}")
+        except Exception as e:
+            print(f"Error adding documents: {e}")
