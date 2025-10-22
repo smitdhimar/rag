@@ -30,5 +30,5 @@ retirever = RAGretriever(vector_store, embedding_manager)
 # ollama llm connection
 question = "what is professional reference letter"
 llm = OllamaLLM()
-response = llm.send_message(retirever, question )
+response = llm.send_message(retirever, question)
 print(response['response'])
